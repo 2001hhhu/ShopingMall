@@ -8,13 +8,13 @@
 
 ​	主界面
 
-<img src="C:\Users\Mare\AppData\Roaming\Typora\typora-user-images\image-20231018212356411.png" alt="image-20231018212356411" style="zoom:25%;" />
+<img src="./introduce/home.png" alt="image-20231018212356411" style="zoom:25%;" />
 
 
 
 ​	登录界面
 
-<img src="C:\Users\Mare\AppData\Roaming\Typora\typora-user-images\image-20231018212544914.png" alt="image-20231018212544914" style="zoom:25%;" />
+<img src="./introduce/login.png" alt="image-20231018212544914" style="zoom:25%;" />
 
 ## 3、技术栈
 
