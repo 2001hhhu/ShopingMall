@@ -33,7 +33,7 @@ const router = new VueRouter({
     { path: '/myorder', component: MyOrder },
     { path: '/pay', component: Pay },
     { path: '/prodetail/:id', component: ProDetail },
-    { path: '/searchlist ', component: SearchList }
+    { path: '/searchlist', component: SearchList }
     // { path: '/', component:}
   ]
 })

@@ -1,5 +1,6 @@
 // 约定一个通用的键名
-const INFO_KEY = 'hm_shopping_info'
+const INFO_KEY = 'hh_shopping_info'
+const HISTORY_KEY = 'hh_history_list'
 
 export const getInfo = () => {
   const defaultObj = { token: '', userId: '' }
@@ -11,4 +12,12 @@ export const setInfo = (obj) => {
 }
 export const removeInfo = () => {
   localStorage.removeItem(INFO_KEY)
+}
+
+export const getHistoryList = () => {
+  const result = localStorage.getItem(HISTORY_KEY)
+  return result ? JSON.parse(result) : []
+}
+export const setHistoryList = (arr) => {
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(arr))
 }
