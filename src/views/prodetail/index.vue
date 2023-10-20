@@ -98,7 +98,7 @@
         </div>
         <div class="num-box">
           <span>数量</span>
-          数字框占位
+          <CountBox v-model="addCount"></CountBox>
         </div>
         <div class="showbtn" v-if="true">
           <div class="btn" v-if="mode === 'cart'">加入购物车</div>
@@ -113,6 +113,8 @@
 <script>
 import { getProDetail, getProComments } from '@/api/product'
 import defaultImg from '@/assets/default-avatar.png'
+import CountBox from '@/components/CountBox.vue'
+
 export default {
   name: 'ProDetail',
   data () {
@@ -124,8 +126,12 @@ export default {
       commentList: [],
       defaultImg,
       showPannel: false,
-      mode: 'cart'
+      mode: 'cart',
+      addCount: 1
     }
+  },
+  components: {
+    CountBox
   },
   computed: {
     goodsId () {
