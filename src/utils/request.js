@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Toast } from 'vant'
+import store from '@/store'
 
 const instance = axios.create({
   baseURL: 'http://cba.itlike.com/public/index.php?s=/api/',
@@ -9,12 +10,19 @@ const instance = axios.create({
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
+
   Toast.loading({
     message: '加载中...',
     forbidClick: true,
     loadingType: 'spinner',
     duration: 0
   })
+
+  const token = store.getters.token
+  if (token) {
+    config.headers['Access-Token'] = token
+    config.headers.platform = 'H5'
+  }
   return config
 }, function (error) {
   // 对请求错误做些什么

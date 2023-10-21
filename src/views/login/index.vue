@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 头部 -->
-    <van-nav-bar title="登录" right-text="测试" left-arrow @click-left="onClickLeft" @click-right="onClickRight"/>
+    <van-nav-bar title="登录" right-text="测试" left-arrow @click-left="$router.go(-1)" @click-right="onClickRight"/>
     <div class="container">
       <div class="title">
         <h3>手机号登录</h3>
@@ -106,7 +106,10 @@ export default {
       const res = await codeLogin(this.mobile, this.msgCode)
       this.$store.commit('user/setUserInfo', res.data)
       console.log(res)
-      this.$router.push('/')
+      // 回跳
+      const url = this.$route.query.backUrl || '/'
+      console.log(url)
+      this.$router.replace(url)
     }
   },
   async created () {
