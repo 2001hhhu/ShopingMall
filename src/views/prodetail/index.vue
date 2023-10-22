@@ -103,7 +103,7 @@
         </div>
         <div class="showbtn" v-if="true">
           <div class="btn" v-if="mode === 'cart'" @click="addCart">加入购物车</div>
-          <div class="btn now" v-else>立刻购买</div>
+          <div class="btn now" v-else @click="goBuyNow">立刻购买</div>
         </div>
         <div class="btn-none" v-else>该商品已抢完</div>
       </div>
@@ -116,9 +116,11 @@ import { getProDetail, getProComments } from '@/api/product'
 import defaultImg from '@/assets/default-avatar.png'
 import CountBox from '@/components/CountBox.vue'
 import { addCart } from '@/api/cart.js'
+import loginConfirm from '@/mixins/loginConfirm.js'
 
 export default {
   name: 'ProDetail',
+  mixins: [loginConfirm],
   data () {
     return {
       images: [],
@@ -173,6 +175,9 @@ export default {
       this.showPannel = true
     },
     async addCart () {
+      if (this.loginConfirm()) {
+        return
+      }
       if (!this.$store.getters.token) {
         this.$dialog.confirm({
           title: '温馨提示',
@@ -195,6 +200,20 @@ export default {
       this.cartTotal = data.cartTotal
       this.$toast('加入购物车成功')
       this.showPannel = false
+    },
+    goBuyNow () {
+      if (this.loginConfirm()) {
+        return
+      }
+      this.$router.push({
+        path: '/pay',
+        query: {
+          mode: 'buyNow',
+          goodsId: this.goodsId,
+          goodsSkuId: this.detail.skuList[0].goods_sku_id,
+          goodsNum: this.addCount
+        }
+      })
     }
   }
 }
